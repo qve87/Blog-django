@@ -8,3 +8,8 @@ from .models import Page
 class PageListView(ListView):
     model = Page
     template_name = "home.html"
+
+
+class PageDetailView(DetailView):
+    model = Page
+    template_name = "pages_detail.html"

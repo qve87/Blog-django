@@ -4,7 +4,7 @@
 
 {% for page in page_list %}
     <div class="page-list">
-        <h2>{{ page.title }}</h2>
+        <h2><a href="{% url 'pages_detail' page.pk %}">{{ page.title }}</a></h2>
         <p>{{ page.body }}</p>
     </div>
 
