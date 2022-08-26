@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 {% for page in page_list %}
     <div class="page-list">
         <h2><a href="{% url 'pages_detail' page.pk %}">{{ page.title }}</a></h2>
+        <small>{{ user.username }} |</small>
+        <small class="time">{{ page.created }}</small>
         <p>{{ page.body }}</p>
+        <hr class="post-separator">
     </div>
 
 {% endfor %}
