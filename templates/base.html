@@ -15,15 +15,16 @@
     <div class="head">    
         <header>   
             <a class="logo" href="{% url 'home' %}">Team Blog</a>
-            <form action="">
-                <input class="nav-search" type='search' placeholder="Search..." autocomplete="off">
+            <form action="{% url 'search_title' %}" method=POST>
+                 {% csrf_token %}
+                <input class="nav-search" type='search' placeholder="Search title" autocomplete="off", name="searched">
                 <button class="btn-search" type="submit">Search</button>
             </form> 
             <nav> 
                 <ul>
                     {% if user.is_active %}
                         <li>Hello, {{ user.username }}!</li>
-                        <li><a href="#">New Post</a></li>
+                        <li><a href="{% url 'create_post' %}">New Post</a></li>
                         <li><a href="#">Log Out</a></li>                                      
                     {% else %}
                         <li><a href="#">Login</a></li>

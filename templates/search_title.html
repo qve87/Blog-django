@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% comment %} {% for page in page_list %} {% endcomment %}
+
+    {% if searched  %}
+        <h1>Results for "{{ searched }}"  </h1>
+
+        {% for title in titles %}
+        <div class="page-list">
+            <h2><a href="{% url 'pages_detail' title.pk %}">{{ title.title }}</a></h2>
+            <small>{{ title.author }} |</small>
+            <small class="time">{{ title.created }}</small>
+            <p>{{ title.body }}</p>
+            <hr class="post-separator">
+        </div>
+        {% endfor %}
+    {% else %}
+        <h1>You have to type something</h1>
+
+
+
+
+{% endif %}
+    {% comment %} <div class="page-list">
+        <h2><a href="{% url 'pages_detail' page.pk %}">{{ page.title }}</a></h2>
+        <small>{{ page.author }} |</small>
+        <small class="time">{{ page.created }}</small>
+        <p>{{ page.body }}</p>
+        <hr class="post-separator">
+    </div> {% endcomment %}
+
+{% comment %} {% endfor %} {% endcomment %}
+
+{% endblock content %}

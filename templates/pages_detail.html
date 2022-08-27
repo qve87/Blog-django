@@ -6,9 +6,13 @@
 
 <div class="page-list">
     <h2><a href="{% url 'pages_detail' page.pk %}">{{ page.title }}</a></h2>
-    <small>{{ user.username }} |</small>
+    <small>{{ page.author }} |</small>
     <small class="time">{{ page.created }}</small>
     <p>{{ page.body }}</p>
+    {%if user.id == page.author.id %}
+        <p><a href="{% url 'update_post' page.pk %}">+ Edit Blog Post</a></p>
+        <p><a href="{% url 'delete_post' page.pk %}">+ Delete Blog Post</a></p>
+    {% endif %}    
     <hr class="post-separator">  
 </div>
 
