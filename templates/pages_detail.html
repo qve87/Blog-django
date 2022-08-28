@@ -10,8 +10,10 @@
     <small class="time">{{ page.created }}</small>
     <p>{{ page.body }}</p>
     {%if user.id == page.author.id %}
-        <p><a href="{% url 'update_post' page.pk %}">+ Edit Blog Post</a></p>
-        <p><a href="{% url 'delete_post' page.pk %}">+ Delete Blog Post</a></p>
+    <div class="edit-delete">
+        <p><a class="edit" href="{% url 'update_post' page.pk %}">Edit Post</a></p>
+        <p><a class="delete" href="{% url 'delete_post' page.pk %}">Delete Post</a></p>
+    </div>
     {% endif %}    
     <hr class="post-separator">  
 </div>

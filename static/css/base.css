@@ -12,8 +12,10 @@ header {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-h1 {
+h1,
+label {
     margin-left: .5em;
+    font-family: "Montserrat", sans-serif;
 }
 
 h2 {
@@ -40,10 +42,19 @@ hr {
     margin-right: 0;
 }
 
+form p,
 p {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
+}
 
+form p {
+    margin-left: 1em;
+}
+
+p a {
+    font-size: small;
+    display: inline-block;
 }
 
 .page-list {
@@ -98,6 +109,24 @@ header {
     padding: 0 5%;
 }
 
+.edit-delete {
+    width: 100px;
+}
+
+.edit,
+.delete {
+    display: grid;
+
+}
+
+.delete {
+    color: rgb(250, 45, 4);
+}
+
+.edit {
+    color: rgb(4, 209, 250);
+}
+
 .nav-links {
     list-style: none;
 }
@@ -139,4 +168,27 @@ header {
 
 small {
     font-family: "Montserrat", sans-serif;
+}
+
+.btn-create,
+.btn-update,
+.btn-delete {
+    font-family: "Montserrat", sans-serif;
+    margin-left: 3em;
+    width: 5em;
+    height: 2em;
+    border: none;
+
+}
+
+.btn-create {
+    background-color: rgb(5, 201, 5);
+}
+
+.btn-update {
+    background-color: rgb(8, 234, 192);
+}
+
+.btn-delete {
+    background-color: rgb(250, 79, 11);
 }
