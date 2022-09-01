@@ -8,6 +8,8 @@ from django.views.generic import (
     UpdateView,
 )
 
+from .forms import DefaultUserCreationForm
+
 from .models import Page
 
 
@@ -37,6 +39,12 @@ class PostDeleteView(DeleteView):
     model = Page
     template_name = "delete_post.html"
     success_url = reverse_lazy("home")
+
+
+class SignUpView(CreateView):
+    form_class = DefaultUserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
 
 
 def search_title(request):

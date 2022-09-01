@@ -7,9 +7,11 @@ from .views import (
     PostCreateView,
     PostUpdateView,
     PostDeleteView,
+    SignUpView,
 )
 
 urlpatterns = [
+    path("signup/", SignUpView.as_view(), name="signup"),
     path("page/<int:pk>", PageDetailView.as_view(), name="pages_detail"),
     path("page/new", PostCreateView.as_view(), name="create_post"),
     path("page/<int:pk>/update", PostUpdateView.as_view(), name="update_post"),

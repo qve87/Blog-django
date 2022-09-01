@@ -23,13 +23,13 @@
             </form> 
             <nav> 
                 <ul>
-                    {% if user.is_active %}
+                    {% if user.is_authenticated %}
                         <li>Hello, {{ user.username }}!</li>
                         <li><a href="{% url 'create_post' %}">New Post</a></li>
-                        {% comment %} <li><a href="#">Log Out</a></li>                                       {% endcomment %}
+                        <li><a href="{% url 'logout' %}">Log Out</a></li>                                      
                     {% else %}
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Sign Up</a></li>
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'signup' %}">Sign Up</a></li>
                      {% endif %}
                  </ul>
              </nav>
