@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -13,32 +14,44 @@ from .forms import DefaultUserCreationForm
 from .models import Page
 
 
-class PageListView(ListView):
+class PageListView(LoginRequiredMixin, ListView):
     model = Page
     template_name = "home.html"
 
 
-class PageDetailView(DetailView):
+class PageDetailView(LoginRequiredMixin, DetailView):
     model = Page
     template_name = "pages_detail.html"
 
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Page
     template_name = "create_post.html"
-    fields = ("title", "author", "body")
+    fields = ("title", "body")
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Page
     template_name = "update_post.html"
     fields = ("title", "body")
 
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
 
-class PostDeleteView(DeleteView):
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Page
     template_name = "delete_post.html"
     success_url = reverse_lazy("home")
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
 
 
 class SignUpView(CreateView):

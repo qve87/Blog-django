@@ -192,3 +192,9 @@ small {
 .btn-delete {
     background-color: rgb(250, 79, 11);
 }
+
+.pass-change {
+    text-decoration: underline;
+    
+    margin-left: 1em;
+}
