@@ -15,7 +15,7 @@
 <body>
     <div class="head">    
         <header>   
-            <a class="logo" href="{% url 'home' %}">Team Blog</a>
+            <a class="logo" href="{% url 'home' %}">Blog</a>
             <form action="{% url 'search_title' %}" method=POST>
                  {% csrf_token %}
                 <input class="nav-search" type='search' placeholder="Search title" autocomplete="off", name="searched">

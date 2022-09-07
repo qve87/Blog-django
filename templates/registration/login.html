@@ -2,11 +2,13 @@
 
 
 {% block content %}
-<h2>Log In</h2>
-<form method="post">{% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Log In</button>
-</form>
-<br>
-<a class="pass-change" href="{% url 'password_reset' %}">Forgot your password?</a>
+<div class="container">
+    <h2>Log In</h2>
+    <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Log In</button>
+    </form>
+    <br>
+    <a class="pass-change" href="{% url 'password_reset' %}">Forgot your password?</a>
+</div>
 {% endblock content %}

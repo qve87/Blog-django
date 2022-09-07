@@ -9,6 +9,16 @@
     <small>{{ page.author }} |</small>
     <small class="time">{{ page.created }}</small>
     <p>{{ page.body }}</p>
+    
+    <form action="{% url 'like_post' page.pk %}" method="post">{% csrf_token %}
+
+        {% if liked %}
+        <button type="submit" name="page_id" value="{{ page.id }}" class="btn-unlike">Unlike</button> 
+        {% else %}
+        <button type="submit" name="page_id" value="{{ page.id }}" class="btn-like">Like</button> 
+        {% endif %}
+        {{ total_likes }} - likes
+    </form>
     {%if user.id == page.author.id %}
     <div class="edit-delete">
         <p><a class="edit" href="{% url 'update_post' page.pk %}">Edit Post</a></p>

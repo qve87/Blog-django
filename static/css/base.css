@@ -110,12 +110,14 @@ header {
 }
 
 .edit-delete {
-    width: 100px;
+    display: flex;
+    height: 3em;
+    font-family: "Montserrat", sans-serif;
 }
 
 .edit,
 .delete {
-    display: grid;
+    margin-right: 1em;
 
 }
 
@@ -195,6 +197,29 @@ small {
 
 .pass-change {
     text-decoration: underline;
-    
+
     margin-left: 1em;
+}
+
+.container {
+    width: 30%;
+    margin: 0 auto 0 auto;
+}
+
+.btn-like,
+.btn-unlike {
+
+    border-radius: 0.5em;
+    font-family: "Montserrat", sans-serif;
+    border: none;
+
+}
+
+.btn-like {
+    background-color: rgb(66, 167, 245);
+    color: white;
+}
+
+.btn-unlike {
+    background-color: rgb(241, 61, 61);
 }

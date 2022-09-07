@@ -8,6 +8,7 @@ from .views import (
     PostUpdateView,
     PostDeleteView,
     SignUpView,
+    like_view,
 )
 
 urlpatterns = [
@@ -16,6 +17,7 @@ urlpatterns = [
     path("page/new", PostCreateView.as_view(), name="create_post"),
     path("page/<int:pk>/update", PostUpdateView.as_view(), name="update_post"),
     path("page/<int:pk>/delete", PostDeleteView.as_view(), name="delete_post"),
+    path("like/<int:pk>", like_view, name="like_post"),
     path("", PageListView.as_view(), name="home"),
     path("search_title", search_title, name="search_title"),
 ]

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 from django.views.generic import (
     ListView,
     DetailView,
@@ -22,6 +23,19 @@ class PageListView(LoginRequiredMixin, ListView):
 class PageDetailView(LoginRequiredMixin, DetailView):
     model = Page
     template_name = "pages_detail.html"
+
+    def get_context_data(self, **kwargs):
+        certain_page = get_object_or_404(Page, id=self.kwargs["pk"])
+        total_likes = certain_page.total_likes()
+
+        liked = False
+        if certain_page.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        context = super(PageDetailView, self).get_context_data(**kwargs)
+        context["total_likes"] = total_likes
+        context["liked"] = liked
+        return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -74,3 +88,15 @@ def search_title(request):
         )
     else:
         return render(request, "search_title.html", {})
+
+
+def like_view(request, pk):
+    post = get_object_or_404(Page, id=request.POST.get("page_id"))
+    # liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        # liked = False
+    else:
+        post.likes.add(request.user)
+        # liked = True
+    return HttpResponseRedirect(reverse("pages_detail", args=[str(pk)]))
