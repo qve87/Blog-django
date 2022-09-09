@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import (
@@ -48,7 +48,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, UpdateView):
+class PostUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Page
     template_name = "update_post.html"
     fields = ("title", "body")
@@ -58,7 +58,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
         return obj.author == self.request.user
 
 
-class PostDeleteView(LoginRequiredMixin, DeleteView):
+class PostDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Page
     template_name = "delete_post.html"
     success_url = reverse_lazy("home")
