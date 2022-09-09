@@ -48,7 +48,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Page
     template_name = "update_post.html"
     fields = ("title", "body")
@@ -58,7 +58,7 @@ class PostUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
         return obj.author == self.request.user
 
 
-class PostDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Page
     template_name = "delete_post.html"
     success_url = reverse_lazy("home")

@@ -17,7 +17,7 @@
         {% else %}
         <button type="submit" name="page_id" value="{{ page.id }}" class="btn-like">Like</button> 
         {% endif %}
-        {{ total_likes }} - likes
+        {{ post.likes.count }} - likes
     </form>
     {%if user.id == page.author.id %}
     <div class="edit-delete">
